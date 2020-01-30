@@ -8,18 +8,19 @@ const REQ_HEADERS = {
 const QUERY_GOAL_BY_ID = `
 query goalById($id: Int!) {
     goals_by_pk(id: $id) {
-      category
-      created_by_id
-      date_from
-      date_to
-      delegated_to_id
-      description
-      parent_id
-      state
-      type
-      verification_method
-      verifier_id
-      weight
+        id
+        category
+        created_by_id
+        date_from
+        date_to
+        delegated_to_id
+        description
+        parent_id
+        state
+        type
+        verification_method
+        verifier_id
+        weight
     }
   }
 `;
@@ -77,7 +78,7 @@ async function createNew (o) {
         variables: o,
         headers: REQ_HEADERS}
     );
-    console.log(response);
+    return response.data.insert_goals.returning;
 }
 
 async function changeStatus (goalId, newStatus) {

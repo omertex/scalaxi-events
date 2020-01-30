@@ -31,6 +31,7 @@ function initialize() {
 
     app.post('/goals/action', async (req, res) => {
       await goalActions.post(req, res);
+      res.sendStatus(200);
     });
 
     httpServer.listen(webServerConfig.port)
