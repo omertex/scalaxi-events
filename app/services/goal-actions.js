@@ -2,14 +2,14 @@ const goalsService = require("./goals");
 
 async function processAction(action) {
     if (action.name == "delegate") {
-        const parentGoal = await goalsService.getById(action.data.goal_id);
+        const parentGoal = await goalsService.getById(action.goal_id);
         const delegatedGoal = {
             parentId: parentGoal.id,
             description: parentGoal.description,
             verificationMethod: parentGoal.verification_method,
             type: parentGoal.type,
             category: 2,
-            weight: parentGoal.weight,
+            weight: action.data.weight,
             state: "in_review",
             dateFrom: parentGoal.date_from,
             dateTo: parentGoal.date_to,
