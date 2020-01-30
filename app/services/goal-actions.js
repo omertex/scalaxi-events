@@ -10,7 +10,7 @@ async function processAction(action) {
             type: parentGoal.type,
             category: 2,
             weight: parentGoal.weight,
-            state: parentGoal.state,
+            state: "in_review",
             dateFrom: parentGoal.date_from,
             dateTo: parentGoal.date_to,
             createdById: parentGoal.created_by_id,
