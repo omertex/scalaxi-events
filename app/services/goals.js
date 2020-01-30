@@ -61,6 +61,18 @@ const MUTATION_INSERT_GOAL = `mutation insertGoal (
   }
 `;
 
+const MUTATION_CHANGE_GOAL_STATE = `mutation changeGoalState (
+    $id: Int!,
+    $newState: String!
+    ) {
+        update_goals(where: {id: {_eq: $id}}, _set: {state: $newState}) {
+            returning {
+                id
+            }
+        }
+    }
+`;
+
 async function getById (id) {
     const response = await query({
         query: QUERY_GOAL_BY_ID,
@@ -81,12 +93,18 @@ async function createNew (o) {
     return response.data.insert_goals.returning;
 }
 
-async function changeStatus (goalId, newStatus) {
-
+async function changeState (goalId, newState) {
+    const response = await query({
+        query: MUTATION_CHANGE_GOAL_STATE,
+        endpoint: config.hasuraEndpoint,
+        variables: { id: goalId, newState: newState },
+        headers: REQ_HEADERS}
+    );
+    return response.data.update_goals.returning;
 }
 
 module.exports = {
     getById,
     createNew,
-    changeStatus
+    changeState
 }

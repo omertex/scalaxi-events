@@ -20,7 +20,7 @@ async function processAction(action) {
         await goalsService.createNew(delegatedGoal);
     }
     else if (action.name == "in_work") {
-        await goalsService.changeStatus(action.goal_id, "in_progress");
+        await goalsService.changeState(action.goal_id, "in_work");
     }
 }
 
