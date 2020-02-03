@@ -18,6 +18,9 @@ async function processAction(action) {
             verifierId: parentGoal.verifier_id
         };
         await goalsService.createNew(delegatedGoal);
+        if (parentGoal.state == "draft") {
+            await goalsService.changeState(parentGoal.id, "in_review");
+        }
     }
     else if (action.name == "in_work") {
         await goalsService.changeState(action.goal_id, "in_work");
