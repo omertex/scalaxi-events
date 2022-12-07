@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/omertex/scalaxi-events#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "graphqurl": "^0.3.3",
     "http": "0.0.0",
     "jsonwebtoken": "^8.5.1"
